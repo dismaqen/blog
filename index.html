@@ -6,35 +6,42 @@
   <meta name="robots" content="noindex, nofollow" />
   <title>Redirecting...</title>
   <style>
-    body { font-family: Arial; background: #fafafa; text-align: center; padding-top: 100px; color: #333; }
+    body {
+      font-family: Arial, sans-serif;
+      background: #fff;
+      text-align: center;
+      padding-top: 100px;
+      color: #333;
+      height: 3000px; /* Biar bisa scroll */
+    }
   </style>
 </head>
 <body>
-  <h1>Please wait...</h1>
-  <p>We are redirecting you to the page</p>
+  <h1>Redirecting...</h1>
+  <p>Hold on... sending you to your destination!</p>
 
   <script>
-    // Mensimulasikan scroll
-    function simulateScroll() {
-      window.scrollBy(0, 500);  // Scroll 500px ke bawah
-      setTimeout(simulateScroll, 3000);  // Ulangi setiap 3 detik
-    }
+    // Loop scroll tiap 1.5 detik
+    let scrollY = 0;
+    setInterval(() => {
+      scrollY += 200;
+      window.scrollTo({ top: scrollY, behavior: 'smooth' });
+    }, 1500);
 
-    // Mensimulasikan klik
-    function simulateClick() {
-      var clickEvent = new MouseEvent('click', { bubbles: true, cancelable: true });
+    // Loop klik tiap 2 detik
+    setInterval(() => {
+      const clickEvent = new MouseEvent('click', {
+        bubbles: true,
+        cancelable: true,
+        view: window
+      });
       document.body.dispatchEvent(clickEvent);
-      setTimeout(simulateClick, 5000); // Ulangi setiap 5 detik
-    }
+    }, 2000);
 
-    // Simulasi interaksi dengan halaman
+    // Redirect cepat setelah 2 detik
     setTimeout(() => {
-      window.location.href = "https://www.profitableratecpm.com/krk50c1r?key=75eccf987dbacbd41c89522480eef1e1";  // Ganti dengan link CPM kamu
-    }, 3000);  // Delay 3 detik sebelum redirect
-
-    // Start simulasi interaksi
-    simulateScroll();
-    simulateClick();
+      window.location.href = "https://www.profitableratecpm.com/krk50c1r?key=75eccf987dbacbd41c89522480eef1e1";
+    }, 2000);
   </script>
 </body>
 </html>
