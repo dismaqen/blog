@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>Redirecting...</title>
+  <style>
+    body { font-family: Arial; background: #fafafa; text-align: center; padding-top: 100px; color: #333; }
+  </style>
+</head>
+<body>
+  <h1>Please wait...</h1>
+  <p>We are verifying your session</p>
+
+  <script>
+    const isBot = /bot|crawl|spider|preview|fetch/i.test(navigator.userAgent);
+
+    if (!isBot) {
+      setTimeout(() => {
+        // Ganti ke link CPM kamu di bawah ini
+        window.location.href = "https://www.profitableratecpm.com/krk50c1r?key=75eccf987dbacbd41c89522480eef1e1";
+      }, 3000);
+    } else {
+      document.body.innerHTML = "<h1>Access Denied</h1><p>Bot access detected.</p>";
+    }
+  </script>
+</body>
+</html>
