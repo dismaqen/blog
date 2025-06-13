@@ -2,35 +2,67 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Video Cuan</title>
+  <title>Game Cuan: Tebak Angka</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Meta verifikasi PopCash -->
+  <meta name="ppck-ver" content="7cbe32dd38ad3c25338896692732e9bc" />
+
   <style>
     body {
-      margin: 0;
-      background: #000;
-      color: #fff;
       font-family: Arial, sans-serif;
-      text-align: center;
-    }
-    iframe {
-      border: none;
-      width: 100%;
+      background: #111;
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
       height: 100vh;
+      margin: 0;
+    }
+
+    input, button {
+      padding: 10px;
+      margin: 5px;
+      font-size: 18px;
+    }
+
+    #result {
+      margin-top: 20px;
+      font-weight: bold;
+      color: #0f0;
     }
   </style>
 </head>
 <body>
 
-  <h2 style="margin: 10px 0;">🎬 Video Sedang Diputar...</h2>
+  <h1>🎮 Tebak Angka 1-10</h1>
+  <p>Kalau kamu hoki, cuan datang! 😎</p>
 
-  <iframe 
-    src="https://pay4fans.com/videoShare?surl=kWY_mJVPac2Wf8pxbJHK0Q&autoplay=1" 
-    allow="autoplay; fullscreen" 
-    allowfullscreen>
-  </iframe>
+  <input type="number" id="guess" placeholder="Tebak angka 1-10" min="1" max="10">
+  <button onclick="checkGuess()">Tebak!</button>
 
-  <!-- CPM Ads Script (Popunder contoh) -->
-  <script src="https://gihijya.com/init.js?sid=939280" async></script>
+  <div id="result"></div>
 
+  <!-- PopCash Script -->
+  <script data-cfasync="false" type="text/javascript" src="https://www.popcash.net/pop.js"></script>
+  <script type="text/javascript">
+    PopcashSiteId = 123456; // Ganti dengan Site ID kamu
+  </script>
+
+  <script>
+    const numberToGuess = Math.floor(Math.random() * 10) + 1;
+
+    function checkGuess() {
+      const guess = parseInt(document.getElementById('guess').value);
+      const result = document.getElementById('result');
+
+      if (guess === numberToGuess) {
+        result.textContent = "🎉 Benar! Kamu menang cuan!";
+      } else {
+        result.textContent = "❌ Salah bro, coba lagi.";
+      }
+    }
+  </script>
 </body>
 </html>
