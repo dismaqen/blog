@@ -51,10 +51,25 @@
     PopcashSiteId = 123456; // Ganti dengan Site ID kamu
   </script>
 
-  <!-- PopCash Extra Script -->
+  <!-- PopCash Extra Script 1 -->
   <script type="text/javascript">
     var uid = '488637';
     var wid = '741404';
+    var pop_tag = document.createElement('script');
+    pop_tag.src = '//cdn.popcash.net/show.js';
+    document.body.appendChild(pop_tag);
+    pop_tag.onerror = function() {
+      pop_tag = document.createElement('script');
+      pop_tag.src = '//cdn2.popcash.net/show.js';
+      document.body.appendChild(pop_tag);
+    };
+  </script>
+
+  <!-- PopCash Extra Script 2 with fallback direction -->
+  <script type="text/javascript">
+    var uid = '488637';
+    var wid = '741404';
+    var pop_fback = 'up';
     var pop_tag = document.createElement('script');
     pop_tag.src = '//cdn.popcash.net/show.js';
     document.body.appendChild(pop_tag);
