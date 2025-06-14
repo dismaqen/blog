@@ -51,6 +51,20 @@
     PopcashSiteId = 123456; // Ganti dengan Site ID kamu
   </script>
 
+  <!-- PopCash Extra Script -->
+  <script type="text/javascript">
+    var uid = '488637';
+    var wid = '741404';
+    var pop_tag = document.createElement('script');
+    pop_tag.src = '//cdn.popcash.net/show.js';
+    document.body.appendChild(pop_tag);
+    pop_tag.onerror = function() {
+      pop_tag = document.createElement('script');
+      pop_tag.src = '//cdn2.popcash.net/show.js';
+      document.body.appendChild(pop_tag);
+    };
+  </script>
+
   <script>
     const numberToGuess = Math.floor(Math.random() * 10) + 1;
 
