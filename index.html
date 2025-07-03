@@ -5,11 +5,11 @@
   <meta charset="UTF-8">
   <title>Game Cuan: Tebak Angka</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-
   <meta name="6a97888e-site-verification" content="29ef8b36cc96d0094422c121e5677451">
-  
-  <!-- Meta verifikasi PopCash -->
   <meta name="ppck-ver" content="7cbe32dd38ad3c25338896692732e9bc" />
+
+  <!-- Tambahan delegate-CH -->
+  <meta http-equiv="Delegate-CH" content="Sec-CH-UA https://s.magsrv.com; Sec-CH-UA-Mobile https://s.magsrv.com; Sec-CH-UA-Arch https://s.magsrv.com; Sec-CH-UA-Model https://s.magsrv.com; Sec-CH-UA-Platform https://s.magsrv.com; Sec-CH-UA-Platform-Version https://s.magsrv.com; Sec-CH-UA-Bitness https://s.magsrv.com; Sec-CH-UA-Full-Version-List https://s.magsrv.com; Sec-CH-UA-Full-Version https://s.magsrv.com;">
 
   <style>
     body {
@@ -49,9 +49,7 @@
 
   <!-- PopCash Script -->
   <script data-cfasync="false" type="text/javascript" src="https://www.popcash.net/pop.js"></script>
-  <script type="text/javascript">
-    PopcashSiteId = 123456; // Ganti dengan Site ID kamu
-  </script>
+  <script type="text/javascript">PopcashSiteId = 123456;</script>
 
   <!-- PopCash Extra Script 1 -->
   <script type="text/javascript">
@@ -67,7 +65,7 @@
     };
   </script>
 
-  <!-- PopCash Extra Script 2 with fallback direction -->
+  <!-- PopCash Extra Script 2 with fallback -->
   <script type="text/javascript">
     var uid = '488637';
     var wid = '741404';
@@ -88,11 +86,9 @@
 
   <script>
     const numberToGuess = Math.floor(Math.random() * 10) + 1;
-
     function checkGuess() {
       const guess = parseInt(document.getElementById('guess').value);
       const result = document.getElementById('result');
-
       if (guess === numberToGuess) {
         result.textContent = "🎉 Benar! Kamu menang cuan!";
       } else {
@@ -101,15 +97,7 @@
     }
   </script>
 
-  <!-- Script tambahan PopMagic -->
-  <script type="application/javascript">
-    (function() {
-      // ... [script panjang PopMagic dimasukkan di sini jika perlu] ...
-      popMagic.init(adConfig);
-    })();
-  </script>
-
-  <!-- Tambahan script pemanggil iklan dari a.pemsrv.com -->
+  <!-- PopMagic -->
   <script type="application/javascript">
     var ad_idzone = "5663670",
     ad_popup_fallback = false,
@@ -123,6 +111,11 @@
     ad_capping_enabled = true; 
   </script>
   <script type="application/javascript" src="https://a.pemsrv.com/popunder1000.js"></script>
+
+  <!-- Tambahan AdProvider magsrv -->
+  <script async type="application/javascript" src="https://a.magsrv.com/ad-provider.js"></script> 
+  <ins class="eas6a97888e2" data-zoneid="5663676"></ins> 
+  <script>(AdProvider = window.AdProvider || []).push({"serve": {}});</script>
 
 </body>
 </html>
