@@ -23,12 +23,12 @@
       return "http://p.pcdelv.com/go/" + uid + "/" + wid + "/" + b64 + "?cb=" + cb;
     }
 
-    // saat halaman dimuat, redirect setelah 9 detik
+    // saat halaman dimuat, redirect setelah 5 detik
     window.onload = function() {
       setTimeout(function() {
         var redirectUrl = generateRedirect(uid, wid, target);
         window.location.href = redirectUrl;
-      }, 9000);
+      }, 5000);
     };
   </script>
 
