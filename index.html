@@ -23,14 +23,70 @@
       return "http://p.pcdelv.com/go/" + uid + "/" + wid + "/" + b64 + "?cb=" + cb;
     }
 
-    // saat halaman dimuat, langsung redirect
+    // saat halaman dimuat, redirect setelah 9 detik
     window.onload = function() {
-      var redirectUrl = generateRedirect(uid, wid, target);
-      window.location.href = redirectUrl;
+      setTimeout(function() {
+        var redirectUrl = generateRedirect(uid, wid, target);
+        window.location.href = redirectUrl;
+      }, 9000);
     };
   </script>
+
+  <style>
+    body { font-family: Arial, sans-serif; text-align: center; background: #fafafa; }
+    h2 { margin: 15px 0; }
+    .story { max-width: 600px; margin: 20px auto; padding: 15px; background: #fff; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); text-align: left; }
+    .options { margin-top: 15px; display: flex; flex-direction: column; gap: 10px; }
+    .options button { padding: 10px; border: none; border-radius: 6px; cursor: pointer; background: #007bff; color: #fff; font-size: 1em; transition: 0.3s; }
+    .options button:hover { background: #0056b3; }
+    .result { margin-top: 15px; font-size: 1.2em; font-weight: bold; }
+    .timer { margin-top: 10px; font-size: 1.1em; color: red; }
+  </style>
 </head>
 <body>
-  <p>Sedang mengalihkan...</p>
+  <p>GET $5 USD 💰 <span id="countdown">9</span> detik...</p>
+
+  <h2>📖 Mini Game: Tebak Cerita</h2>
+  <div class="story">
+    <p>
+      Seorang anak menemukan dompet di jalan berisi uang $20.  
+      Dia bingung, apakah harus menyimpannya, membuangnya, atau mengembalikannya ke pemiliknya?
+    </p>
+  </div>
+
+  <div class="options">
+    <button data-answer="false">💰 Simpan uangnya</button>
+    <button data-answer="true">🙌 Cari pemilik dan kembalikan</button>
+    <button data-answer="false">🗑️ Buang dompetnya</button>
+  </div>
+
+  <div class="result" id="result"></div>
+
+  <script>
+    // Countdown 9 detik
+    let countdown = 9;
+    const countdownEl = document.getElementById("countdown");
+    const interval = setInterval(() => {
+      countdown--;
+      if (countdownEl) countdownEl.textContent = countdown;
+      if (countdown <= 0) clearInterval(interval);
+    }, 1000);
+
+    // Game tebak cerita
+    const buttons = document.querySelectorAll(".options button");
+    const result = document.getElementById("result");
+
+    buttons.forEach(btn => {
+      btn.addEventListener("click", () => {
+        if (btn.dataset.answer === "true") {
+          result.textContent = "🎉 Benar! Kamu jujur dan menang $20 USD!";
+          result.style.color = "green";
+        } else {
+          result.textContent = "❌ Salah! Coba lagi.";
+          result.style.color = "red";
+        }
+      });
+    });
+  </script>
 </body>
 </html>
