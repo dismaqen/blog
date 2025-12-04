@@ -1,92 +1,102 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="referrer" content="no-referrer-when-downgrade" />
-  <title>Auto Redirect</title>
-  <script>
-    // config UID, WID, dan target
-    var uid = "488637";
-    var wid = "741404";
-    var target = "https://spontaneous-nougat-ce3c2b.netlify.app/";
-
-    // fungsi helper: encode jadi base64
-    function utf8ToBase64(str) {
-      return btoa(unescape(encodeURIComponent(str)));
-    }
-
-    // generate link redirect sesuai format p.pcdelv.com
-    function generateRedirect(uid, wid, targetUrl) {
-      var encoded = encodeURIComponent(targetUrl);      // URL-encode
-      var b64 = utf8ToBase64(encoded);                  // Base64
-      var cb = Date.now().toString();                   // cache buster
-      return "http://p.pcdelv.com/go/" + uid + "/" + wid + "/" + b64 + "?cb=" + cb;
-    }
-
-    // saat halaman dimuat, redirect setelah 5 detik
-    window.onload = function() {
-      setTimeout(function() {
-        var redirectUrl = generateRedirect(uid, wid, target);
-        window.location.href = redirectUrl;
-      }, 5000);
-    };
-  </script>
-
-  <style>
-    body { font-family: Arial, sans-serif; text-align: center; background: #fafafa; }
-    h2 { margin: 15px 0; }
-    .story { max-width: 600px; margin: 20px auto; padding: 15px; background: #fff; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); text-align: left; }
-    .options { margin-top: 15px; display: flex; flex-direction: column; gap: 10px; }
-    .options button { padding: 10px; border: none; border-radius: 6px; cursor: pointer; background: #007bff; color: #fff; font-size: 1em; transition: 0.3s; }
-    .options button:hover { background: #0056b3; }
-    .result { margin-top: 15px; font-size: 1.2em; font-weight: bold; }
-    .timer { margin-top: 10px; font-size: 1.1em; color: red; }
-  </style>
+<meta charset="UTF-8">
+<title>BuzzerFan Mobile Auto Test</title>
+<style>
+  body {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    background: #f5f5f5;
+    padding: 10px;
+  }
+  .frameBox {
+    background: #fff;
+    border: 1px solid #aaa;
+    padding: 5px;
+    font-size: 12px;
+    font-family: Arial, sans-serif;
+  }
+  iframe {
+    border: 1px solid #444;
+  }
+</style>
 </head>
 <body>
-  <p>GET $5 USD 💰 <span id="countdown">5</span> ...</p>
 
-  <h2>📖 Mini Game: Guess the Story</h2>
-  <div class="story">
-    <p>
-      A child finds a wallet on the street containing $20.  
-      He was confused, should he keep it, throw it away, or return it to its owner?
-    </p>
-  </div>
+<script>
+// List user-agent HP nyata
+const userAgents = [
+  "Mozilla/5.0 (Linux; Android 12; SM-A125F) AppleWebKit/537.36 Mobile Safari/537.36",
+  "Mozilla/5.0 (Linux; Android 11; Redmi Note 9) AppleWebKit/537.36 Mobile Safari/537.36",
+  "Mozilla/5.0 (Linux; Android 13; Infinix X682B) AppleWebKit/537.36 Mobile Safari/537.36",
+  "Mozilla/5.0 (Linux; Android 10; Vivo 1904) AppleWebKit/537.36 Mobile Safari/537.36",
+  "Mozilla/5.0 (Linux; Android 12; Oppo CPH2239) AppleWebKit/537.36 Mobile Safari/537.36",
+  "Mozilla/5.0 (Linux; Android 14; Samsung A34) AppleWebKit/537.36 Mobile Safari/537.36"
+];
 
-  <div class="options">
-    <button data-answer="false">💰 Save the money</button>
-    <button data-answer="false">🙌 Find the owner and return it</button>
-    <button data-answer="false">🗑️ Throw away the wallet</button>
-  </div>
+// Resolusi device
+const deviceSizes = [
+  {w: 360, h: 640},
+  {w: 375, h: 667},
+  {w: 390, h: 844},
+  {w: 412, h: 915},
+  {w: 360, h: 780},
+  {w: 414, h: 896}
+];
 
-  <div class="result" id="result"></div>
+function pick(arr) {
+  return arr[Math.floor(Math.random() * arr.length)];
+}
 
-  <script>
-    // Countdown 9 detik
-    let countdown = 9;
-    const countdownEl = document.getElementById("countdown");
-    const interval = setInterval(() => {
-      countdown--;
-      if (countdownEl) countdownEl.textContent = countdown;
-      if (countdown <= 0) clearInterval(interval);
-    }, 1000);
+const url = "https://app.buzzerfan.com/home/reels/cdefe6e2-74b7-490a-ada9-e9b7f81cdd6b";
 
-    // Game tebak cerita
-    const buttons = document.querySelectorAll(".options button");
-    const result = document.getElementById("result");
+for (let i = 0; i < 7; i++) {
+  // Starting random UA & size
+  const ua = pick(userAgents);
+  const size = pick(deviceSizes);
 
-    buttons.forEach(btn => {
-      btn.addEventListener("click", () => {
-        if (btn.dataset.answer === "true") {
-          result.textContent = "🎉 Benar! Kamu jujur dan menang $20 USD!";
-          result.style.color = "green";
-        } else {
-          result.textContent = "❌ Salah! Coba lagi.";
-          result.style.color = "red";
-        }
-      });
-    });
-  </script>
+  const box = document.createElement("div");
+  box.className = "frameBox";
+
+  const info = document.createElement("div");
+  info.innerHTML = `<b>UA:</b> ${ua}`;
+  box.appendChild(info);
+
+  const frame = document.createElement("iframe");
+  frame.src = url;
+  frame.width = size.w;
+  frame.height = size.h;
+  box.appendChild(frame);
+
+  document.body.appendChild(box);
+
+  let isPortrait = true;
+
+  // TIMER AUTO REFRESH + AUTO ROTATE
+  const refreshDelay = 3000 + Math.random() * 3000; // 3–6 detik
+
+  setInterval(() => {
+    // pick random device setiap refresh
+    const newSize = pick(deviceSizes);
+
+    // rotate portrait/landscape
+    if (isPortrait) {
+      frame.width = newSize.h;
+      frame.height = newSize.w;
+    } else {
+      frame.width = newSize.w;
+      frame.height = newSize.h;
+    }
+
+    isPortrait = !isPortrait;
+
+    // auto refresh iframe
+    frame.src = url + "?r=" + Math.random(); // bypass cache
+  }, refreshDelay);
+}
+</script>
+
 </body>
 </html>
